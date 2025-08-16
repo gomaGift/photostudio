@@ -1,5 +1,4 @@
-[build]
-  base = "photo-studio-with-vite"        
+[build]        
   publish = "dist"               
   command = "npm run build"
 
