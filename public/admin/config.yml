@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "photo-studio-with-vite/public/uploads/images"
+media_folder: "public/uploads/images"
 public_folder: "/uploads/images"
 
 collections:
@@ -11,7 +11,7 @@ collections:
     extension: "json"
     format: "json"
     files:
-      - file: "./photo-studio-with-vite/files.json"   # <-- corrected path
+      - file: "files.json"   # <-- corrected path
         label: "Image List"
         name: "images"
         fields:

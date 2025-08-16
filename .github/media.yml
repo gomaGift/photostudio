@@ -3,7 +3,7 @@ name: Update Image Files JSON
 on:
   push:
     paths:
-      - 'photo-studio-with-vite/public/uploads/**/*.{jpg,jpeg,png,gif}'
+      - 'public/uploads/**/*.{jpg,jpeg,png,gif}'
 
 jobs:
   update-files-json:
@@ -19,8 +19,8 @@ jobs:
 
       - name: Update files.json
         run: |
-          JSON_FILE="./photo-studio-with-vite/files.json"
-          IMAGE_DIR="./photo-studio-with-vite/public/uploads/images"
+          JSON_FILE="files.json"
+          IMAGE_DIR="public/uploads/images"
 
           if [ ! -f "$JSON_FILE" ]; then
             echo '{"images":[]}' > "$JSON_FILE"
@@ -42,6 +42,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ./photo-studio-with-vite/files.json
+          git add files.json
           git commit -m "Update files.json" || echo "No changes"
           git push origin main
