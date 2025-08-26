@@ -21,6 +21,6 @@ collections:
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Image", name: "file", widget: "image" }
-              - { label: "Category", name: "category", widget: "string", options: ["Featured", "Weddings", "Graduations", "Birthdays", "Random"]}
+              - { label: "Category", name: "category", widget: "select", options: ["Featured", "Weddings", "Graduations", "Birthdays", "Random"]}
               - { label: "Date", name: "date", widget: "datetime" }
 
