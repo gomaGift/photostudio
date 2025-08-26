@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
 *,
 *::after,
@@ -6,7 +6,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Lora', serif;
+  font-family: "Segoi UI", serif;
 }
 
 .nav-bar {
@@ -31,9 +31,6 @@
   text-decoration: none;
   margin: 1rem;
 }
-
-
-
 
 .view-projects {
   display: inline-flex; /* instead of flex, so it only wraps its content */
@@ -64,10 +61,14 @@
   object-position: center;
 }
 
-
+main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
 .cover {
-  background-image: url('../public/uploads/images/lens.jpg');
+  background-image: url("../public/uploads/images/lens.jpg");
   min-height: 90vh;
   background-size: cover;
   background-position: center;
@@ -90,8 +91,6 @@
   overflow: hidden;
 }
 
-
-
 .cover a {
   display: inline;
 }
@@ -100,8 +99,6 @@
   margin-top: 2rem;
   font-style: italic;
 }
-
-
 
 @keyframes zoomOutToPlace {
   from {
@@ -127,8 +124,8 @@
 
 /* Start state */
 .cover h1,
-.cover p ,
-.view-projects{
+.cover p,
+.view-projects {
   opacity: 0;
   transform: scale(2) translateZ(200px);
 }
@@ -138,9 +135,9 @@
   transform: scale(0.85);
 }
 
-
 /* Animate in when visible */
-.cover.visible h1 , .view-projects.visible{
+.cover.visible h1,
+.view-projects.visible {
   animation: zoomOutToPlace 0.8s ease forwards;
 }
 
@@ -153,13 +150,29 @@
   animation: fadeScale 0.6s ease forwards;
 }
 
-
 .about {
   background-color: black;
   color: white;
   display: flex;
   gap: 5rem;
-  padding: 9rem;
+  padding: 10rem;
+}
+.about__text {
+  flex: 1;
+}
+
+.about-img {
+  flex: 1;
+  background-color: white;
+  border-radius: 20px;
+  overflow: hidden;
+  max-height: 500px;
+}
+
+.about-img img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .about p {
@@ -206,6 +219,68 @@
 }
 
 @keyframes scroll-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.portfolio-container {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-template-rows: 2fr 2fr;
+  padding: 5% 10%;
+  gap: 0 1rem;
+  background-image: url("../public/uploads/images/top-view-photography-accesories-with-copy-space.jpg");
+  background-size: cover
+
+}
+
+.text-content {
+  color: white;
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.featured-area {
+  grid-column: 1;
+  grid-row: 1/3;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+
+
+
+.featured-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cards-strip {
+  display: flex;
+  gap: 2rem;
+}
+
+.photo-card {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
