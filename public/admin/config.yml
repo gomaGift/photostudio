@@ -2,17 +2,19 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/uploads/images"
-public_folder: "/uploads/images"
+media_folder: "public/uploads/images"   # Where images are stored in repo
+public_folder: "/uploads/images"        # Public URL path for Netlify/Vite
 
 collections:
   - name: "images"
     label: "Images"
-    folder: "public/uploads/images"
+    label_singular: "Image"
+    description: "Manage uploaded images"
+    folder: "public/uploads/images"      # Images go here
     create: true
-    extension: "jpg"
+    slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Image", name: "file", widget: "image" }
-      - { label: "Category", name: "category", widget: "select", options: ["Featured", "Weddings", "Graduations", "Birthdays", "Random"]}
+      - { label: "Category", name: "category", widget: "select", options: ["Featured", "Weddings", "Graduations", "Birthdays", "Random"] }
       - { label: "Date", name: "date", widget: "datetime" }

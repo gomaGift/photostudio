@@ -2,13 +2,14 @@ name: Update Image Files
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - "public/uploads/images/**/*.{jpg,jpeg,png,gif}"
 
 jobs:
   update-files-json:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -19,7 +20,7 @@ jobs:
           JSON_FILE="public/files.json"
           IMAGE_DIR="public/uploads/images"
 
-          echo '{"images": [' > "$JSON_FILE"
+          echo '{ "images": [' > "$JSON_FILE"
           first=true
 
           find "$IMAGE_DIR" -type f \( \
@@ -27,10 +28,16 @@ jobs:
             -iname "*.jpeg" -o \
             -iname "*.png" -o \
             -iname "*.gif" \
-          \) | while read -r filepath; do
+          \) | sort | while read -r filepath; do
 
             # Make the path relative to public/
             clean_path="${filepath#public/}"
+
+            # Derive a title from the filename (strip extension)
+            title="$(basename "$filepath" | sed 's/\.[^.]*$//')"
+
+            # ISO UTC date string
+            date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
             if [ "$first" = true ]; then
               first=false
@@ -38,7 +45,7 @@ jobs:
               echo "," >> "$JSON_FILE"
             fi
 
-            echo "  {\"title\": \"\", \"file\": \"./${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> "$JSON_FILE"
+            echo "  {\"title\": \"$title\", \"file\": \"./${clean_path}\", \"category\": \"\", \"date\": \"$date\"}" >> "$JSON_FILE"
           done
 
           echo "]}" >> "$JSON_FILE"
