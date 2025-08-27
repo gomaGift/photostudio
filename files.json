@@ -1,0 +1,40 @@
+{
+  "images": [
+    {
+      "date": "2025-08-26T14:08:37.314Z",
+      "title": "night",
+      "file": "/uploads/images/infinity.jpg",
+      "category": "Featured"
+    },
+    {
+      "date": "2025-08-26T14:10:11.919Z",
+      "title": "swing",
+      "file": "/uploads/images/swing.jpg",
+      "category": "Featured"
+    },
+    {
+      "date": "2025-08-26T14:10:40.861Z",
+      "title": "cacti",
+      "file": "/uploads/images/photo-camera-cactus-white-background.jpg",
+      "category": "Featured"
+    },
+    {
+      "date": "2025-08-27T12:01:39.870Z",
+      "title": "Me",
+      "file": "/uploads/images/beautiful-selective-focus-shot-crystal-ball-reflecting-breathtaking-sunset.jpg",
+      "category": "Featured"
+    },
+    {
+      "date": "2025-08-27T12:03:06.873Z",
+      "title": "cams",
+      "file": "/uploads/images/top-view-photography-accesories-with-copy-space.jpg",
+      "category": "Featured"
+    },
+    {
+      "date": "2025-08-27T14:49:46.749Z",
+      "title": "Kobe",
+      "file": "/uploads/images/kobe.jpg",
+      "category": "Weddings"
+    }
+  ]
+}
