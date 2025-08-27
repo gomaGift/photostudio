@@ -70,13 +70,25 @@ export const cover = () => {
 
 
 //  we want to load images innit fam,,
+interface ImageItem {
+  "date": string,
+  "title": string,
+  "category": string,
+  "file": string
+}
+
+interface ImageData {
+  "images": ImageItem[]
+}
 
 export const loadImages = async (path: string) => {
   // Implementation goes here
   const res = await fetch(path);
-  const data = await res.json();
-  const files: string[] = data.files;
-  return files;
+  const data: ImageData = await res.json();
+  
+  console.log("files: " + data);
+  
+  return data;
 };
 
 export const loadImage = async (fileName: string) => {
@@ -91,7 +103,7 @@ export function parseFrontmatter(content: string) {
   const parts = content.split("---");
 
   if (parts.length < 3) {
-    return { frontmatter: {}, body: content }; // fallback if no frontmatter
+    return { frontmatter: {}, body: content };   //fallback if no frontmatter
   }
 
   const yamlText = parts[1].trim();

@@ -33,18 +33,18 @@
 }
 
 .view-projects {
-  display: inline-flex; /* instead of flex, so it only wraps its content */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   background-color: black;
   color: white;
   gap: 0.5rem;
   margin-top: 2rem;
-  padding: 0.5rem 1rem; /* balanced horizontal padding */
+  padding: 0.5rem 1rem;
   border-radius: 14px;
   text-decoration: none;
-  width: auto; /* prevents stretching */
-  max-width: fit-content; /* ensures it only takes what it needs */
+  width: auto;
+  max-width: fit-content;
 }
 
 .projects {
@@ -122,6 +122,40 @@ main {
   }
 }
 
+/* Sliding animation keyframes */
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /* Start state */
 .cover h1,
 .cover p,
@@ -157,6 +191,7 @@ main {
   gap: 5rem;
   padding: 10rem;
 }
+
 .about__text {
   flex: 1;
 }
@@ -234,8 +269,7 @@ main {
   padding: 5% 10%;
   gap: 0 1rem;
   background-image: url("../public/uploads/images/top-view-photography-accesories-with-copy-space.jpg");
-  background-size: cover
-
+  background-size: cover;
 }
 
 .text-content {
@@ -243,7 +277,6 @@ main {
   grid-column: 2;
   grid-row: 1;
   display: flex;
-  flex-direction: column;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -256,31 +289,108 @@ main {
   background: #000;
   border-radius: 20px;
   overflow: hidden;
+  max-height: 546.84px;
+  position: relative;
 }
-
-
-
 
 .featured-area img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
+}
+
+/* Transition classes for featured area */
+.featured-area img.slide-out {
+  animation: slideOutLeft 0.8s ease-in-out forwards;
+}
+
+.featured-area img.slide-in {
+  animation: slideInFromRight 0.8s ease-in-out forwards;
 }
 
 .cards-strip {
   display: flex;
   gap: 2rem;
+  grid-column: 2;
+  grid-row: 2;
+  overflow: hidden;
+  position: relative;
 }
 
 .photo-card {
   flex: 1;
   overflow: hidden;
   border-radius: 20px;
+  height: 273.42px;
+  position: relative;
 }
-
 
 .photo-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
+}
+
+/* Transition classes for photo cards */
+.photo-card img.slide-out {
+  animation: slideOutLeft 0.8s ease-in-out forwards;
+}
+
+.photo-card img.slide-in {
+  animation: slideInFromRight 0.8s ease-in-out forwards;
+}
+
+.photo-card img.slide-up {
+  animation: slideInFromBottom 0.8s ease-in-out forwards;
+}
+
+/* Transitioning state to prevent interactions */
+.transitioning {
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .portfolio-container {
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    padding: 5%;
+  }
+  
+  .text-content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 2rem;
+  }
+  
+  .featured-area {
+    grid-column: 1;
+    grid-row: 2;
+    max-height: 300px;
+  }
+  
+  .text-content {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+  }
+  
+  .cards-strip {
+    grid-column: 1;
+    grid-row: 3;
+  }
 }
