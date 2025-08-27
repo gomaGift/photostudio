@@ -16,8 +16,8 @@ jobs:
 
       - name: Generate files.json in src
         run: |
-          cd public/uploads/images || exit
-          echo '{"images": [' > ../../files.json
+          cd public/uploads/images 
+          echo '{"images": [' > files.json
           first=true
 
           find . -type f \( \
@@ -34,19 +34,19 @@ jobs:
             if [ "$first" = true ]; then
               first=false
             else
-              echo "," >> ../../files.json
+              echo "," >> files.json
             fi
 
             # Write JSON object (with placeholders for metadata)
-            echo "  {\"title\": \"\", \"file\": \"./uploads/images/${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> ../../files.json
+            echo "  {\"title\": \"\", \"file\": \"./uploads/images/${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> files.json
           done
 
-          echo "]}" >> ../../files.json
+          echo "]}" >> files.json
 
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add files.json
+          git add public/uploads/images/files.json
           git commit -m "Auto-update files.json" || echo "No changes to commit"
           git push origin main
