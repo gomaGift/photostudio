@@ -11,7 +11,7 @@ collections:
     extension: "json"
     format: "json"
     files:
-      - file: "files.json"   # <-- corrected path
+      - file: "public/uploads/images/files.json"   # <-- corrected path
         label: "Image List"
         name: "images"
         fields:
