@@ -1,5 +1,4 @@
 name: Update Image Files JSON
-
 on:
   push:
     paths:
@@ -12,36 +11,40 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-         ref: main
-
+          ref: main
+      
       - name: Install jq
         run: sudo apt-get install jq -y
-
+      
       - name: Update files.json
         run: |
-          JSON_FILE="files.json"
+          JSON_FILE="public/files.json"
           IMAGE_DIR="public/uploads/images"
-
+          
+          # Create public directory if it doesn't exist
+          mkdir -p public
+          
           if [ ! -f "$JSON_FILE" ]; then
             echo '{"images":[]}' > "$JSON_FILE"
           fi
-
+          
           EXISTING_JSON=$(cat "$JSON_FILE")
-
+          
           NEW_JSON=$(jq -n '{images: []}')
           while IFS= read -r -d '' file; do
             FILENAME=$(basename "$file")
-            NEW_JSON=$(echo "$NEW_JSON" | jq --arg f "$FILENAME" '.images += [{"title":"", "file":"/uploads/"+$f, "category":"", "date":""}]')
+            # Update the path to be relative from public folder
+            NEW_JSON=$(echo "$NEW_JSON" | jq --arg f "$FILENAME" '.images += [{"title":"", "file":"./uploads/images/"+$f, "category":"", "date":""}]')
           done < <(find "$IMAGE_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) -print0)
-
+          
           MERGED=$(jq -s '{images: (.[0].images + .[1].images | unique_by(.file))}' <(echo "$EXISTING_JSON") <(echo "$NEW_JSON"))
-
+          
           echo "$MERGED" > "$JSON_FILE"
-
+      
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add files.json
-          git commit -m "Update files.json" || echo "No changes"
+          git add public/files.json
+          git commit -m "Update public/files.json" || echo "No changes"
           git push origin main
