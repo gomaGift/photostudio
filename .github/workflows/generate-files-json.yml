@@ -16,32 +16,35 @@ jobs:
 
       - name: Generate files.json in public
         run: |
-          cd ./public/uploads/images || exit
-          echo '{"images": [' > ../../files.json
+          JSON_FILE="public/files.json"
+          IMAGE_DIR="public/uploads/images"
+
+          echo '{"images": [' > "$JSON_FILE"
           first=true
 
-          find . -type f \( \
+          find "$IMAGE_DIR" -type f \( \
             -iname "*.jpg" -o \
             -iname "*.jpeg" -o \
             -iname "*.png" -o \
             -iname "*.gif" \
           \) | while read -r filepath; do
 
-            # Remove leading './'
-            clean_path="${filepath#./}"
+            # Make the path relative to public/
+            clean_path="${filepath#public/}"
 
-            # Add comma if not the first entry
             if [ "$first" = true ]; then
               first=false
             else
-              echo "," >> ../../files.json
+              echo "," >> "$JSON_FILE"
             fi
 
-            # Write JSON object with placeholders
-            echo "  {\"title\": \"\", \"file\": \"./uploads/images/${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> ../../files.json
+            echo "  {\"title\": \"\", \"file\": \"./${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> "$JSON_FILE"
           done
 
-          echo "]}" >> ../../files.json
+          echo "]}" >> "$JSON_FILE"
+
+          echo "Generated $(wc -l < "$JSON_FILE") lines in $JSON_FILE"
+          ls -l public/
 
       - name: Commit changes
         run: |
