@@ -38,8 +38,8 @@ jobs:
           while IFS= read -r -d '' file; do
             # Get filename only
             FILENAME=$(basename "$file")
-            # Add to JSON with relative path from public folder
-            NEW_JSON=$(echo "$NEW_JSON" | jq --arg f "$FILENAME" '.images += [{"title":"", "file":"./uploads/images/"+$f, "category":"", "date":""}]')
+            # Add to JSON with path that will work in the built dist folder
+            NEW_JSON=$(echo "$NEW_JSON" | jq --arg f "$FILENAME" '.images += [{"title":"", "file":"/uploads/images/"+$f, "category":"", "date":""}]')
           done < <(find "$IMAGE_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) -print0)
           
           # Merge existing and new images, keeping unique entries by file path
@@ -48,7 +48,7 @@ jobs:
           # Write the merged JSON to public/files.json
           echo "$MERGED" > "$JSON_FILE"
           
-          echo "Generated files.json with $(echo "$MERGED" | jq '.images | length') images"
+          echo "Generated public/files.json with $(echo "$MERGED" | jq '.images | length') images"
       
       - name: Commit changes
         run: |

@@ -11,7 +11,7 @@ collections:
     extension: "json"
     format: "json"
     files:
-      - file: "public/files.json"   # <-- Updated path to public folder
+      - file: "public/files.json"   # <-- Back to public folder (this gets copied to dist)
         label: "Image List"
         name: "images"
         fields:
