@@ -18,7 +18,7 @@ jobs:
       
       - name: Update files.json
         run: |
-          JSON_FILE="public/files.json"
+          JSON_FILE="../public/files.json"
           IMAGE_DIR="public/uploads/images"
           
           # Create public directory if it doesn't exist
@@ -45,6 +45,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/files.json
+          git add ../public/files.json
           git commit -m "Update public/files.json" || echo "No changes"
           git push origin main
