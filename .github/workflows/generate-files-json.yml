@@ -17,7 +17,7 @@ jobs:
       - name: Generate files.json in src
         run: |
           cd public/uploads/images || exit
-          echo '{"images": [' > ../../../src/files.json
+          echo '{"images": [' > ../../files.json
           first=true
 
           find . -type f \( \
@@ -34,14 +34,14 @@ jobs:
             if [ "$first" = true ]; then
               first=false
             else
-              echo "," >> ../../../src/files.json
+              echo "," >> ../../files.json
             fi
 
             # Write JSON object (with placeholders for metadata)
             echo "  {\"title\": \"\", \"file\": \"./uploads/images/${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> ../../../src/files.json
           done
 
-          echo "]}" >> ../../../src/files.json
+          echo "]}" >> ../../files.json
 
       - name: Commit changes
         run: |
