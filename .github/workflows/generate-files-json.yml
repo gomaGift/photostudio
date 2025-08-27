@@ -16,7 +16,7 @@ jobs:
 
       - name: Generate files.json in public
         run: |
-          cd public/uploads/images || exit
+          cd ./public/uploads/images || exit
           echo '{"images": [' > ../../files.json
           first=true
 
