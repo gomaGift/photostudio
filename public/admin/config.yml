@@ -11,7 +11,7 @@ collections:
     extension: "json"
     format: "json"
     files:
-      - file: "public/uploads/images/files.json"   # <-- corrected path
+      - file: "public/files.json"   # <-- Updated path to public folder
         label: "Image List"
         name: "images"
         fields:
@@ -23,4 +23,3 @@ collections:
               - { label: "Image", name: "file", widget: "image" }
               - { label: "Category", name: "category", widget: "select", options: ["Featured", "Weddings", "Graduations", "Birthdays", "Random"]}
               - { label: "Date", name: "date", widget: "datetime" }
-
