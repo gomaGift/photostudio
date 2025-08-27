@@ -8,18 +8,11 @@ public_folder: "/uploads/images"
 collections:
   - name: "images"
     label: "Images"
-    extension: "json"
-    format: "json"
-    files:
-      - file: "public/files.json"   # <-- Back to public folder (this gets copied to dist)
-        label: "Image List"
-        name: "images"
-        fields:
-          - label: "Images"
-            name: "images"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Image", name: "file", widget: "image" }
-              - { label: "Category", name: "category", widget: "select", options: ["Featured", "Weddings", "Graduations", "Birthdays", "Random"]}
-              - { label: "Date", name: "date", widget: "datetime" }
+    folder: "public/uploads/images"
+    create: true
+    extension: "jpg"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "file", widget: "image" }
+      - { label: "Category", name: "category", widget: "select", options: ["Featured", "Weddings", "Graduations", "Birthdays", "Random"]}
+      - { label: "Date", name: "date", widget: "datetime" }

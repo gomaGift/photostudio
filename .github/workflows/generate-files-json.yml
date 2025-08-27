@@ -1,9 +1,9 @@
-name: Update Image Files 
+name: Update Image Files
 
 on:
   push:
-    paths:
-      - "public/uploads/images"
+    branches:
+      - main
 
 jobs:
   update-files-json:
