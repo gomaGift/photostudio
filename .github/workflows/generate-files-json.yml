@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "../public/uploads/images/**/*"
+      - "/uploads/images"
 
 jobs:
   generate-images-json:
@@ -18,7 +18,7 @@ jobs:
 
       - name: Generate files.json in public/uploads/images
         run: |
-          cd public/uploads/images || exit
+          cd /uploads/images || exit
           echo '{"images": [' > files.json
           first=true
 
@@ -45,6 +45,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/uploads/images/files.json
+          git add /uploads/images/files.json
           git commit -m "Auto-update image index" || echo "No changes to commit"
           git push origin main
