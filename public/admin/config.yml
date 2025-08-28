@@ -2,24 +2,29 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/uploads/images"   # Where images are stored
-public_folder: "/uploads/images"        # How they're referenced in the site
+media_folder: "public/uploads/images"   # where uploaded images are stored
+public_folder: "/uploads/images"        # public URL path to images
 
 collections:
   - name: "images"
     label: "Images"
+    folder: "public/uploads/images"     # store entries in this folder
+    create: true
+    delete: true
     extension: "json"
     format: "json"
+    identifier_field: "title"
+
+    # use the files.json index
     files:
-      - file: "files.json"   # Always write at repo root
+      - file: "public/uploads/images/files.json"
         label: "Image List"
-        name: "images"
+        name: "image_list"
         fields:
-          - label: "Images"
-            name: "images"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Image", name: "file", widget: "image" }
-              - { label: "Category", name: "category", widget: "select", options: ["Featured", "Weddings", "Graduations", "Birthdays", "Random"] }
-              - { label: "Date", name: "date", widget: "datetime" }
+          - { name: "images", label: "Images", widget: "list", fields: [
+              { name: "title", label: "Title", widget: "string" },
+              { name: "file", label: "File", widget: "image" },
+              { name: "category", label: "Category", widget: "string" },
+              { name: "date", label: "Date", widget: "datetime" }
+            ]
+          }
