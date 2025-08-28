@@ -18,6 +18,8 @@ jobs:
         run: |
           JSON_FILE="public/files.json"
           IMAGE_DIR="public/uploads/images"
+          mkdir -p "$IMAGE_DIR"
+
           echo '{"images": [' > "$JSON_FILE"
           first=true
           find "$IMAGE_DIR" -type f \( \
@@ -26,18 +28,17 @@ jobs:
             -iname "*.png" -o \
             -iname "*.gif" \
           \) | while read -r filepath; do
-            # Make the path relative to public/
-            clean_path="${filepath#public/}"
+            clean_path="${filepath#public}"   # remove 'public'
             if [ "$first" = true ]; then
               first=false
             else
               echo "," >> "$JSON_FILE"
             fi
-            echo "  {\"title\": \"\", \"file\": \"./${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> "$JSON_FILE"
+            echo "  {\"title\": \"\", \"file\": \"${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> "$JSON_FILE"
           done
           echo "]}" >> "$JSON_FILE"
           echo "Generated $(wc -l < "$JSON_FILE") lines in $JSON_FILE"
-          ls -l public/
+
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
