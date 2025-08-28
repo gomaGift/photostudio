@@ -21,8 +21,14 @@
     {
       "date": "2025-08-28T06:30:52.197Z",
       "title": "something",
-      "file": "/uploads/images/path.jpg",
+      "file": "/uploads/images/capture.png",
       "category": "Weddings"
+    },
+    {
+      "date": "2025-08-28T06:37:53.719Z",
+      "title": "Kobe",
+      "file": "/uploads/images/kobe.jpg",
+      "category": "Graduations"
     }
   ]
 }
