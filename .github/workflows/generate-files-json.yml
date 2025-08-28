@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "public/uploads/images/**/*"
+      - "../public/uploads/images/**/*"
 
 jobs:
   generate-images-json:
