@@ -1,4 +1,4 @@
-name: Update Image Files
+name: Sync CMS files.json
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  update-files-json:
+  copy-files-json:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -14,35 +14,16 @@ jobs:
         with:
           ref: main
 
-      - name: Generate files.json in public
+      - name: Copy CMS files.json into public
         run: |
-          JSON_FILE="public/files.json"
-          IMAGE_DIR="public/uploads/images"
-          mkdir -p "$IMAGE_DIR"
-
-          echo '{"images": [' > "$JSON_FILE"
-          first=true
-          find "$IMAGE_DIR" -type f \( \
-            -iname "*.jpg" -o \
-            -iname "*.jpeg" -o \
-            -iname "*.png" -o \
-            -iname "*.gif" \
-          \) | while read -r filepath; do
-            clean_path="${filepath#public}"   # remove 'public'
-            if [ "$first" = true ]; then
-              first=false
-            else
-              echo "," >> "$JSON_FILE"
-            fi
-            echo "  {\"title\": \"\", \"file\": \"${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> "$JSON_FILE"
-          done
-          echo "]}" >> "$JSON_FILE"
-          echo "Generated $(wc -l < "$JSON_FILE") lines in $JSON_FILE"
+          mkdir -p public
+          cp files.json public/files.json
+          echo "Copied CMS files.json into public/"
 
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add public/files.json
-          git commit -m "Auto-update public/files.json" || echo "No changes to commit"
+          git commit -m "Sync files.json into public/" || echo "No changes to commit"
           git push origin main
