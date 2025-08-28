@@ -2,57 +2,42 @@ name: Update Image Files
 
 on:
   push:
-    paths:
-      - "public/uploads/images/**/*.{jpg,jpeg,png,gif}"
+    branches:
+      - main
 
 jobs:
   update-files-json:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
         with:
           ref: main
 
-      - name: Generate files.json in  public
+      - name: Generate files.json in public
         run: |
           JSON_FILE="public/files.json"
           IMAGE_DIR="public/uploads/images"
-
-          echo '{ "images": [' > "$JSON_FILE"
+          echo '{"images": [' > "$JSON_FILE"
           first=true
-
           find "$IMAGE_DIR" -type f \( \
             -iname "*.jpg" -o \
             -iname "*.jpeg" -o \
             -iname "*.png" -o \
             -iname "*.gif" \
-          \) | sort | while read -r filepath; do
-
+          \) | while read -r filepath; do
             # Make the path relative to public/
             clean_path="${filepath#public/}"
-
-            # Derive a title from the filename (strip extension)
-            title="$(basename "$filepath" | sed 's/\.[^.]*$//')"
-
-            # ISO UTC date string
-            date="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
-
             if [ "$first" = true ]; then
               first=false
             else
               echo "," >> "$JSON_FILE"
             fi
-
-            echo "  {\"title\": \"$title\", \"file\": \"./${clean_path}\", \"category\": \"\", \"date\": \"$date\"}" >> "$JSON_FILE"
+            echo "  {\"title\": \"\", \"file\": \"./${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> "$JSON_FILE"
           done
-
           echo "]}" >> "$JSON_FILE"
-
           echo "Generated $(wc -l < "$JSON_FILE") lines in $JSON_FILE"
           ls -l public/
-
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
