@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*  Portifolio container */
-const files = loadImages("../files.json");
+const files = loadImages("/files.json");
 const imageData = await files;
 // featured Image
 // const featuredImage = document.querySelector<HTMLImageElement>(".featured-area img")
