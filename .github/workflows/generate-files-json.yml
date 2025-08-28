@@ -15,7 +15,7 @@ jobs:
         with:
           ref: main
 
-      - name: Generate files.json in public
+      - name: Generate files.json in  public
         run: |
           JSON_FILE="public/files.json"
           IMAGE_DIR="public/uploads/images"
