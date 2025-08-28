@@ -1,13 +1,12 @@
-name: Generate Image Index
+name: Move CMS files.json
 
 on:
   push:
     branches:
       - main
 
-
 jobs:
-  generate-images-json:
+  move-files-json:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -15,35 +14,21 @@ jobs:
         with:
           ref: main
 
-      - name: Generate files.json in public/uploads/images
+      - name: Move root files.json to public
         run: |
-          cd public/uploads/images || exit
-          echo '{"images": [' > files.json
-          first=true
-
-          find . -type f \( \
-            -iname "*.jpg" -o \
-            -iname "*.jpeg" -o \
-            -iname "*.png" -o \
-            -iname "*.gif" \
-          \) | while read -r filepath; do
-            clean_path="${filepath#./}"
-
-            if [ "$first" = true ]; then
-              first=false
-            else
-              echo "," >> files.json
-            fi
-
-            echo "  {\"title\": \"\", \"file\": \"./uploads/images/${clean_path}\", \"category\": \"\", \"date\": \"\"}" >> files.json
-          done
-
-          echo "]}" >> files.json
+          if [ -f "files.json" ]; then
+            mkdir -p public
+            mv files.json public/files.json
+            echo "Moved files.json into public/"
+          else
+            echo "No root files.json found"
+          fi
 
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/uploads/images/files.json
-          git commit -m "Auto-update image index" || echo "No changes to commit"
+          git add public/files.json
+          git rm -f files.json || true
+          git commit -m "Move files.json into public/" || echo "No changes to commit"
           git push origin main
