@@ -25,7 +25,7 @@ collections:
 
   - name: "Client-Images"
     label: "Client-Images"
-    folder: "/uploads/images/clients"
+    folder: "/uploads/images"
     create: true
     delete: true
     extension: "json"
