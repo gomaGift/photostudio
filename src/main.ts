@@ -1,4 +1,10 @@
-import { initNetlifyIdentity, cover, loadImages } from "./utils";
+import {
+  initNetlifyIdentity,
+  cover,
+  loadImages,
+  type ClientData,
+  type ImageData,
+} from "./utils";
 
 // handle netlify identity
 initNetlifyIdentity();
@@ -7,15 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*  Portifolio container */
-const files = loadImages("/files.json");
-const imageData = await files;
+const slideImagesRes = await loadImages("uploads/images.json")
+const slideImages = await slideImagesRes.json() as ImageData
+
 
 // Copy the images into a queue
-let queue = [...imageData.images];
+let queue = [...slideImages.images];
 let isTransitioning = false;
 
 // Function to create a sliding transition for an image element
-function initialRender() {
+function initialRender() {  
   //  featured Image
   const featuredImage =
     document.querySelector<HTMLImageElement>(".featured-area img");
@@ -107,7 +114,7 @@ const renderImages = async () => {
     document
       .querySelector("portfolio-container")
       ?.classList.remove("transitioning");
-     isTransitioning = false
+    isTransitioning = false;
   }
 };
 
@@ -117,5 +124,37 @@ setInterval(async () => {
   await renderImages();
 }, 3000);
 
-
 // Clients Section
+const clientResponse = await loadImages("uploads/client.json");
+const clientJson = await clientResponse.json() as ClientData;
+let clientData = [...clientJson.client_images];
+const initialClientRender = async () => {
+  
+  const rightImage = document.querySelector(".right-img img") as HTMLImageElement;
+  const leftImage = document.querySelector(".left-img img") as HTMLImageElement;
+  const mainImage = document.querySelector(".main-img") as HTMLImageElement;
+  const userImage = document.querySelector(".user-img") as HTMLImageElement;
+  const testimonial = document.querySelector(".client-say") as HTMLElement
+
+  let index = 0
+  rightImage.src = clientData[index++].file
+  leftImage.src = clientData[index++].file
+  mainImage.src = clientData[index].file
+  userImage.src = clientData[index].user_image
+  console.log(clientData[index].testimonial);
+  
+  testimonial.innerHTML = clientData[index].testimonial
+
+};
+
+
+initialClientRender()
+setInterval( async () => {
+  const first = clientData.shift()
+  if (first) {
+    clientData.push(first)
+  }
+
+  await initialClientRender()
+  
+},3000)

@@ -58,8 +58,18 @@
   border: 2px solid brown;
   border-radius: 10px;
   overflow: hidden;
+ 
+}
+
+.projects > a {
+  width: 120px;
+  height: 120px;
+}
+
+.projects > a > img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 main {
@@ -503,8 +513,8 @@ main {
 
 .left-img,
 .right-img {
-  width: 500px;
-  height: auto;
+  width: 450px;
+  height: 300px;
   z-index: 1;
 }
 .left-img img,

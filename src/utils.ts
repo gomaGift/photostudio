@@ -77,15 +77,28 @@ interface ImageItem {
   "file": string
 }
 
-interface ImageData {
+export interface ImageData {
   "images": ImageItem[]
 }
 
+
+//  client images utils
+interface ClientImages {
+ "title": string,
+  "testimonial": string,
+  "file": string,
+  "user_image": string
+}
+
+export interface ClientData {
+  "client_images": ClientImages[]
+}
+
+
 export const loadImages = async (path: string) => {
   // Implementation goes here
-  const res = await fetch(path);
-  const data: ImageData = await res.json();  
-  return data;
+  return await fetch(path)
+
 };
 
 export const loadImage = async (fileName: string) => {
