@@ -1,34 +1,34 @@
-name: Move CMS files.json
+# name: Move CMS files.json
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  move-files-json:
-    if: github.actor != 'github-actions[bot]'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: main
+# jobs:
+#   move-files-json:
+#     if: github.actor != 'github-actions[bot]'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           ref: main
 
-      - name: Move root files.json to public
-        run: |
-          if [ -f "files.json" ]; then
-            mkdir -p public
-            mv files.json public/files.json
-            echo "Moved files.json into public/"
-          else
-            echo "No root files.json found"
-          fi
+#       - name: Move root files.json to public
+#         run: |
+#           if [ -f "files.json" ]; then
+#             mkdir -p public
+#             mv files.json public/files.json
+#             echo "Moved files.json into public/"
+#           else
+#             echo "No root files.json found"
+#           fi
 
-      - name: Commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add public/files.json
-          git rm -f files.json || true
-          git commit -m "Move files.json into public/" || echo "No changes to commit"
-          git push origin main
+#       - name: Commit changes
+#         run: |
+#           git config --local user.email "action@github.com"
+#           git config --local user.name "GitHub Action"
+#           git add public/files.json
+#           git rm -f files.json || true
+#           git commit -m "Move files.json into public/" || echo "No changes to commit"
+#           git push origin main
