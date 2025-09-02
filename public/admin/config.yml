@@ -31,7 +31,7 @@ collections:
     extension: "json"
     format: "json"
     identifier_field: "title"
-    slug: "client-images"  
+    slug: {{client-images}}
     fields: 
           - {
               name: "client-images", label: "Client-Images", widget: "list", fields: [
@@ -40,6 +40,7 @@ collections:
               {name: "file", label: "File", widget: "image"},
               {name: "user-image", label: "User-Image", widget: "image"}
              ]
+             
           }
 
           
