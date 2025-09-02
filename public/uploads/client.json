@@ -17,6 +17,12 @@
       "testimonial": "My Career coudn't have been captured any better",
       "file": "/uploads/images/kobe.jpg",
       "user_image": "/uploads/images/cam1.jpeg"
+    },
+    {
+      "title": "Another one",
+      "testimonial": "Nature is a thing of beauty",
+      "file": "/uploads/images/flowers.jpg",
+      "user_image": "/uploads/images/infinity.jpg"
     }
   ]
 }
