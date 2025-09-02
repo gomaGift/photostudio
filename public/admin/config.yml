@@ -22,21 +22,23 @@ collections:
               { name: "date", label: "Date", widget: "datetime" }
             ]
           }
-collections:
-  name: "Client-Images"
-  label: "Client-Images"
-  folder: "/uploads/images/clients"
-  create: true
-  delete: true
-  extension: "json"
-  format: "json"
-  identifier_field: "title"
-  fields: 
-      - {
-        "name": "client-images", label: "Client-Images", widget: "list", fields: [
-          {name: "title", label: "Title", widget: "string"},
-          {name : "testimonial", label: "Testimonial", widget: "string"}, 
-          {name: "file", label: "File", widget: "image"},
-          {name: "user-image", label: "User-Image", widget: "image"}
-        ]
-      }
+
+  - name: "Client-Images"
+    label: "Client-Images"
+    folder: "/uploads/images/clients"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    identifier_field: "title"
+    fields: 
+          - {
+              name: "client-images", label: "Client-Images", widget: "list", fields: [
+              {name: "title", label: "Title", widget: "string"},
+              {name : "testimonial", label: "Testimonial", widget: "string"}, 
+              {name: "file", label: "File", widget: "image"},
+              {name: "user-image", label: "User-Image", widget: "image"}
+             ]
+          }
+
+          
