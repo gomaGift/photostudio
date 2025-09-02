@@ -6,41 +6,36 @@ media_folder: "public/uploads/images"   # where uploaded images are stored
 public_folder: "/uploads/images"        # public URL path to images
 
 collections:
+  # Images collection → saves to one fixed JSON file
   - name: "images"
     label: "Images"
-    folder: "public"     # store entries in this folder
-    create: true
-    delete: true
-    extension: "json"
-    format: "json"
-    identifier_field: "title"
-    fields:
-          - { name: "images", label: "Images", widget: "list", fields: [
-              { name: "title", label: "Title", widget: "string" },
-              { name: "file", label: "File", widget: "image" },
-              { name: "category", label: "Category", widget: "select", options: ["Featured", "Weddings", "Graduations"] },
-              { name: "date", label: "Date", widget: "datetime" }
-            ]
-          }
+    files:
+      - file: "public/uploads/images.json"   # JSON file to store entries
+        label: "Images JSON"
+        name: "images"
+        fields:
+          - name: "images"
+            label: "Images"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "file", label: "File", widget: "image" }
+              - { name: "category", label: "Category", widget: "select", options: ["Featured", "Weddings", "Graduations"] }
+              - { name: "date", label: "Date", widget: "datetime" }
 
-  - name: "Client-Images"
-    label: "Client-Images"
-    folder: "public"
-    create: true
-    delete: true
-    extension: "json"
-    format: "json"
-    identifier_field: "title"
-    slug: {{client-images}}
-    fields: 
-          - {
-              name: "client-images", label: "Client-Images", widget: "list", fields: [
-              {name: "title", label: "Title", widget: "string"},
-              {name : "testimonial", label: "Testimonial", widget: "string"}, 
-              {name: "file", label: "File", widget: "image"},
-              {name: "user-image", label: "User-Image", widget: "image"}
-             ]
-             
-          }
-
-          
+  # Client Images collection → saves to one fixed JSON file
+  - name: "client-images"
+    label: "Client Images"
+    files:
+      - file: "public/uploads/client.json"   # JSON file to store entries
+        label: "Client JSON"
+        name: "client"
+        fields:
+          - name: "client_images"
+            label: "Client Images"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "testimonial", label: "Testimonial", widget: "text" }
+              - { name: "file", label: "File", widget: "image" }
+              - { name: "user_image", label: "User Image", widget: "image" }
