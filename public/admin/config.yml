@@ -25,12 +25,13 @@ collections:
 
   - name: "Client-Images"
     label: "Client-Images"
-    folder: "public/uploads/images"
+    folder: "public/uploads"
     create: true
     delete: true
     extension: "json"
     format: "json"
     identifier_field: "title"
+    slug: "client-images"  
     fields: 
           - {
               name: "client-images", label: "Client-Images", widget: "list", fields: [
