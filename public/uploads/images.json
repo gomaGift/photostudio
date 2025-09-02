@@ -1,0 +1,28 @@
+{
+  "images": [
+    {
+      "date": "2025-09-02T17:45:15.490Z",
+      "title": "Kobe",
+      "file": "/uploads/images/capture.png",
+      "category": "Featured"
+    },
+    {
+      "date": "2025-09-02T17:45:26.186Z",
+      "title": "y",
+      "file": "/uploads/images/camera.png",
+      "category": "Featured"
+    },
+    {
+      "date": "2025-09-02T17:45:44.204Z",
+      "title": "Me",
+      "file": "/uploads/images/path.jpg",
+      "category": "Featured"
+    },
+    {
+      "date": "2025-09-02T17:45:45.429Z",
+      "title": "cams",
+      "file": "/uploads/images/anime-boy-chill-digital-art-284-0-j-preview.jpg",
+      "category": "Featured"
+    }
+  ]
+}
