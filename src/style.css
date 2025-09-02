@@ -16,12 +16,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 12rem;
+  overflow: hidden;
 }
 
 .nav-bar img {
-  height: 80px;
+  height: 90px;
   width: auto;
-  border-radius: 40%;
+  border-radius: 20px;
   object-fit: cover;
   transform: skewY(-5deg);
 }
@@ -175,6 +176,10 @@ main {
   animation: zoomOutToPlace 0.8s ease forwards;
 }
 
+.about-img {
+  animation: slideInFromBottom 0.9s ease forwards;
+}
+
 .cover.visible p {
   animation: zoomOutToPlace 0.8s ease forwards;
   animation-delay: 0.3s;
@@ -231,45 +236,15 @@ main {
   max-width: 40%;
 }
 
-.image-strip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.image-track {
-  display: flex;
-  animation: scroll-left 20s linear infinite;
-}
-
-.image-track img {
-  height: 100%;
-  flex: 0 0 auto;
-  margin-right: 1rem;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-}
-
-@keyframes scroll-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 .portfolio-container {
   display: grid;
   grid-template-columns: 2fr 5fr;
   grid-template-rows: 2fr 2fr;
   padding: 5% 10%;
   gap: 0 1rem;
-  background-image: url("../public/uploads/images/top-view-photography-accesories-with-copy-space.jpg");
+  background-image: url("../public/uploads/images/path.jpg");
   background-size: cover;
+  background-position: center;
 }
 
 .text-content {
@@ -300,7 +275,8 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.8s ease;
 }
 
 /* Transition classes for featured area */
@@ -318,7 +294,6 @@ main {
   grid-column: 2;
   grid-row: 2;
   overflow: hidden;
-  position: relative;
 }
 
 .photo-card {
@@ -336,7 +311,8 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.8s ease;
 }
 
 /* Transition classes for photo cards */
@@ -364,7 +340,7 @@ main {
     gap: 2rem;
     padding: 5%;
   }
-  
+
   .text-content {
     padding: 2rem;
   }
@@ -376,21 +352,163 @@ main {
     grid-template-rows: auto auto auto;
     gap: 2rem;
   }
-  
+
   .featured-area {
     grid-column: 1;
     grid-row: 2;
     max-height: 300px;
   }
-  
+
   .text-content {
     grid-column: 1;
     grid-row: 1;
     text-align: center;
   }
-  
+
   .cards-strip {
     grid-column: 1;
     grid-row: 3;
   }
+}
+/* Experince Section */
+.experience {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.moon-text {
+  flex: 1;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: -200px;
+}
+
+.moon-text h1 {
+  font-size: 3rem;
+}
+
+.experience__text-images {
+  display: flex;
+  gap: 150px;
+  padding: 280px 130px;
+}
+
+.exp-text {
+  flex: 1;
+  line-height: 1.5;
+  font-size: 1.5rem;
+  justify-content: center;
+}
+
+.exp-images {
+  flex: 1;
+}
+
+.container-img {
+  position: relative;
+}
+
+.container-img .img-2 {
+  position: absolute;
+  top: 197px;
+  left: -110px;
+}
+
+.container-img .img-3 {
+  position: absolute;
+  right: -150px;
+  bottom: -240px;
+}
+
+@keyframes zoomSlantIn {
+  0% {
+    transform: scale(1.3) translateY(-50px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotateX(0) rotateY(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+.moon-text {
+  animation: zoomSlantIn 1s ease-out forwards;
+}
+
+/* Clientele */
+.clientele {
+  display: flex;
+  flex-direction: column;
+  padding: 100px;
+  background-image: url("../public/uploads/images/client-bg.jpg");
+  background-position: center; /* centers the image */
+  background-repeat: no-repeat; /* prevents tiling */
+  background-size: cover;
+  gap: 20px;
+}
+
+.clientele h1 {
+  text-align: center;
+  color: white;
+  padding: 30px;
+}
+
+.client__image-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client-say {
+  max-width: 500px;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.center-img {
+  width: 700px;
+  height: 400px;
+  position: relative;
+  
+}
+.center-img .main-img {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-img {
+  position: absolute;
+  width: 15%;
+  max-width: 100px;
+  min-width: 60px;
+  aspect-ratio: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover;
+  bottom: -10%;
+  border-radius: 50%;
+  border: 5px solid black;
+
+}
+
+.left-img,
+.right-img {
+  width: 500px;
+  height: auto;
+  z-index: 1;
+}
+.left-img img,
+.right-img img {
+  height: 100%;
+  width: 100%;
 }

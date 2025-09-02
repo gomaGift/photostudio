@@ -84,10 +84,7 @@ interface ImageData {
 export const loadImages = async (path: string) => {
   // Implementation goes here
   const res = await fetch(path);
-  const data: ImageData = await res.json();
-  
-  console.log("files: " + data);
-  
+  const data: ImageData = await res.json();  
   return data;
 };
 
