@@ -138,12 +138,11 @@ const initialClientRender = async () => {
 
   let index = 0
   rightImage.src = clientData[index++].file
-  leftImage.src = clientData[index++].file
   mainImage.src = clientData[index].file
-  userImage.src = clientData[index].user_image
-  console.log(clientData[index].testimonial);
-  
   testimonial.innerHTML = clientData[index].testimonial
+  userImage.src = clientData[index++].user_image
+  leftImage.src = clientData[index].file
+  
 
 };
 
@@ -157,4 +156,27 @@ setInterval( async () => {
 
   await initialClientRender()
   
-},3000)
+}, 3000)
+
+
+async function loadGallery() {
+ 
+
+  const gallery = document.querySelector(".gallery") as HTMLElement;
+  clientData.forEach((imgData,  idx) => {
+    const div = document.createElement("div");
+    if (idx == 2)
+      div.classList.add("item", "tail");
+    else if (idx == 4) div.classList.add("item","wide")
+    else div.className = "item"
+
+    const img = document.createElement("img");
+    img.src = imgData.file;
+    img.alt = "";
+
+    div.appendChild(img);
+    gallery.appendChild(div);
+  });
+}
+
+// loadGallery();
