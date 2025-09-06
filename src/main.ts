@@ -161,24 +161,24 @@ setInterval( async () => {
 }, 3000)
 
 
-async function loadGallery() {
+// async function loadGallery() {
  
 
-  const gallery = document.querySelector(".gallery") as HTMLElement;
-  clientData.forEach((imgData,  idx) => {
-    const div = document.createElement("div");
-    if (idx == 2)
-      div.classList.add("item", "tail");
-    else if (idx == 4) div.classList.add("item","wide")
-    else div.className = "item"
+//   const gallery = document.querySelector(".gallery") as HTMLElement;
+//   clientData.forEach((imgData,  idx) => {
+//     const div = document.createElement("div");
+//     if (idx == 2)
+//       div.classList.add("item", "tail");
+//     else if (idx == 4) div.classList.add("item","wide")
+//     else div.className = "item"
 
-    const img = document.createElement("img");
-    img.src = imgData.file;
-    img.alt = "";
+//     const img = document.createElement("img");
+//     img.src = imgData.file;
+//     img.alt = "";
 
-    div.appendChild(img);
-    gallery.appendChild(div);
-  });
-}
+//     div.appendChild(img);
+//     gallery.appendChild(div);
+//   });
+// }
 
-// loadGallery();
+// // loadGallery();
