@@ -553,7 +553,7 @@ hr, .footer-content {
 }
 .grid-item::after {
   content: "";
-  background: url("../public/uploads/images/insta\ \(2\).png"); /* Instagram logo PNG */
+  background: url("../public/uploads/images/insta.png"); /* Instagram logo PNG */
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -620,7 +620,7 @@ hr, .footer-content {
 .capture-moment {
   margin-top: 95px;
   padding: 100px;
-  background-image: url("../public/uploads/images/ChatGPT\ Image\ Sep\ 6\,\ 2025\,\ 01_09_01\ PM.png");
+  background-image: url("../public/uploads/images/chat.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
