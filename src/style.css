@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Splash&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Splash&display=swap");
 
 *,
 *::after,
@@ -382,6 +382,7 @@ main {
 }
 /* Experince Section */
 .experience {
+  padding-top: 100px;
   background-color: black;
   color: white;
   display: flex;
@@ -530,13 +531,19 @@ main {
   gap: 50px;
 }
 
+.mansory-grid,
+.capture-moment,
+hr, .footer-content {
+  max-width: 1700px;
+  margin: 0 auto;
+  width: 90%;
+}
+
 .mansory-grid {
   display: grid;
   grid-template-columns: repeat(14, 1fr);
   grid-auto-rows: 60px;
   gap: 8px;
-  max-width: 1700px;
-  margin: 0 auto;
 }
 
 .grid-item {
@@ -568,9 +575,9 @@ main {
   opacity: 1;
 }
 
-.gallery h1 {
+.insta {
   color: white;
-  font-family:'Splash', cursive;
+  font-family: "Splash", cursive;
   font-size: 6rem;
   text-align: center;
   font-weight: 400;
@@ -606,4 +613,116 @@ main {
 .item-6 {
   grid-column: 11/15;
   grid-row: 10/17;
+}
+
+/* Capturing Moments */
+
+.capture-moment {
+  margin-top: 95px;
+  padding: 100px;
+  background-image: url("../public/uploads/images/ChatGPT\ Image\ Sep\ 6\,\ 2025\,\ 01_09_01\ PM.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.capture-content {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.capture-content h1 {
+  font-size: 5rem;
+  font-weight: lighter;
+}
+
+.capture-content p {
+  font-size: 1.5rem;
+  margin: 10px;
+  color: brow
+}
+
+.book {
+  text-decoration: none;
+  background-color: black;
+  padding: 15px 0;
+  color: white;
+  border-radius: 20px;
+  max-width: 30%;
+  text-align: center;
+}
+
+footer {
+  background: url("../public/uploads/images/top-view-photography-accesories-with-copy-space.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 0 0 0;
+}
+
+/* Footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+  gap: 20px;
+}
+
+hr {
+  height: 2px;
+  margin: 0  auto;
+  border-radius: 10px;
+}
+
+footer .foot-p{
+  text-align: center;
+  padding: 0 0 20px 0 ;
+  font-size: 1.5rem;
+  margin-top: 15px;
+}
+
+footer ul {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.email-us h2  {
+     margin-bottom: 10px;
+}
+
+footer a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: white;
+}
+
+.input-btn {
+  margin-top: 20px;
+  display: flex;
+
+}
+
+input::placeholder {
+  text-align: center; /* ensures placeholder also aligns */
+  color: gray;  
+  font-size: 1rem;      /* optional: style placeholder color */
+}
+
+.input-btn button {
+  color: white;
+  background-color: #000;
+  cursor: pointer;
+  padding: 0 5%;
+}
+.input-btn input {
+  height: 45px;
+  width: 70%;
+}
+
+.contact-us p {
+  font-size: 1.5rem;
 }

@@ -10,6 +10,8 @@ import {
 initNetlifyIdentity();
 document.addEventListener("DOMContentLoaded", () => {
   cover();
+  const date = document.querySelector(".date") as HTMLElement
+  date.innerHTML = new Date().getFullYear() + ""
 });
 
 /*  Portifolio container */
