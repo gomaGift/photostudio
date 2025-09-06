@@ -227,6 +227,8 @@ main {
 
 .about p {
   display: inline;
+  font-size: 1.3rem;
+  line-height: 1.5;
 }
 
 .our-work {
@@ -238,6 +240,7 @@ main {
 }
 
 .text {
+  font-size: 1rem;
   position: absolute;
   top: 50%;
   left: 5%;
@@ -252,7 +255,7 @@ main {
   grid-template-rows: 2fr 2fr;
   padding: 5% 10%;
   gap: 0 1rem;
-  background-image: url("../public/uploads/images/path.jpg");
+  background-image: url("../public/uploads/images/camera.png");
   background-size: cover;
   background-position: center;
 }
@@ -266,6 +269,10 @@ main {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+}
+
+.text-content p {
+  font-size: 1.5rem;
 }
 
 .featured-area {
@@ -482,6 +489,9 @@ main {
   margin: 0 auto;
   text-align: center;
   margin-top: 50px;
+  font-style: italic;
+  font-size: 1.5rem;
+
 }
 
 .center-img {
@@ -717,6 +727,7 @@ input::placeholder {
   background-color: #000;
   cursor: pointer;
   padding: 0 5%;
+  font-size: 1rem;
 }
 .input-btn input {
   height: 45px;
@@ -725,4 +736,15 @@ input::placeholder {
 
 .contact-us p {
   font-size: 1.5rem;
+}
+
+footer a {
+  text-decoration: underline;
+  text-decoration-color: transparent;  /* hide underline initially */
+  transition: text-decoration-color 0.3s;
+}
+
+footer a:hover {
+  text-decoration-color:orange ;
+  
 }
